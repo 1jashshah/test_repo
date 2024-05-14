@@ -1,0 +1,27 @@
+- name: LOCALHOST INSTALL APCHE
+  hosts: localhost
+  become: true
+  tasks:
+    - name: INSTALL APACHE
+      apt:
+        name: apache2
+        state: present
+      notify:
+        - restart apache2
+
+      handlers:
+        - name: restart apache2
+          service:
+            name: apache2
+            state: restarted
+
+
+
+
+
+
+#    - name: RUN  APACHE
+#      service:
+#        name: apache2
+#        state: started
+#
